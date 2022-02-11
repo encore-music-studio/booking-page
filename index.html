@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Karen's Calendar</title>
+    </head>
+    <body>
+        <!-- https://fullcalendar.io/docs -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css"
+        />
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
+        <!-- https://semantic-ui.com/introduction/getting-started.html -->
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+        />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+        <!-- https://www.emailjs.com/docs/ -->
+        <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+        <div id="booking-form" class="ui modal">
+            <i class="close icon"></i>
+            <div class="header" id="event-title">Piano Lessons</div>
+            <div class="content">
+                <div class="description">
+                    <div class="ui header" id="modal-header">
+                        Booking for {dayName}, {date} at {time}
+                    </div>
+
+                    <form class="ui form">
+                        <div class="field" id="modal-timeslots">
+                            <label>Time Slot</label>
+
+                            <button type="button" class="ui button blue">
+                                2:00PM
+                            </button>
+                            <button type="button" class="ui button grey">
+                                3:00PM
+                            </button>
+                            <button type="button" class="ui button blue">
+                                4:00PM
+                            </button>
+                            <button type="button" class="ui button blue">
+                                5:00PM
+                            </button>
+                        </div>
+
+                        <div class="field">
+                            <label for="modal-name"
+                                >Full Name* (required)</label
+                            >
+                            <input
+                                onchange="bookingHandler.updateBookingName(event)"
+                                id="modal-name"
+                                name="name"
+                                placeholder="Full Name"
+                            />
+                        </div>
+
+                        <div class="field">
+                            <label for="modal-name">Email</label>
+                            <input
+                                onchange="bookingHandler.updateBookingEmail(event)"
+                                id="modal-email"
+                                name="email"
+                                placeholder="Email"
+                            />
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="actions">
+                <button class="ui black deny button">Cancel</button>
+                <button
+                    class="ui positive right labeled icon button"
+                    onclick="bookingHandler.newBooking()"
+                >
+                    Book Now
+                    <i class="checkmark icon"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="booking-message" class="ui modal">
+            <i class="close icon"></i>
+            <div class="header">Piano Lessons Booked Successfully</div>
+            <div class="content">
+                <p>Hi</p>
+            </div>
+            <div class="actions">
+                <button class="ui positive right labeled icon button">
+                    Close
+                    <i class="checkmark icon"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="calendar"></div>
+
+        <button
+            class="ui positive left icon button"
+            onclick="bookingHandler.init()"
+            id="calBtn"
+        >
+            <i class="plus icon"></i>
+            Book a Session
+        </button>
+
+        <div id="loader">
+            <div class="ui active transition visible dimmer">
+                <div class="content">
+                    <div class="ui text loader">Loading</div>
+                </div>
+            </div>
+        </div>
+
+        <script src="js/app.js"></script>
+    </body>
+</html>
