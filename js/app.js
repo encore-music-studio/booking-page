@@ -1,6 +1,6 @@
 const bookingHandler = {
-    // apiUrl: 'https://encore-music-studio.herokuapp.com',
-    apiUrl: 'http://localhost:3001',
+    apiUrl: 'https://encore-music-studio.herokuapp.com',
+    // apiUrl: 'http://localhost:3001',
     availability: [],
     bookings: [],
     currentBooking: {},
